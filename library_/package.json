@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist --repo git@github.com:1234-mahmoud/Library_website.git"
+  "deploy": "gh-pages -d dist"
 
   },
   "dependencies": {
