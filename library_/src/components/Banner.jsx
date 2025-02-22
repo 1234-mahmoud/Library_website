@@ -1,6 +1,6 @@
 import React from 'react'
-import banner1 from '../imgs/banner1-scaled.webp'
-import banner2 from '../imgs/banner2-scaled.webp'
+import banner1 from '../imgs/banner1_scaled.webp'
+import banner2 from '../imgs/banner2_scaled.webp'
 import '../style/Banner.css'
 export default function Banner() {
   return (

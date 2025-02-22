@@ -6,7 +6,7 @@ import { BiUserCircle } from "react-icons/bi";
 import { CiShoppingCart } from "react-icons/ci";
 import React, { useState } from "react";
 import "../style/Header.css";
-import logo from "../imgs/cropped-logo.webp";
+import logo from "../imgs/cropped_logo.webp";
 export default function Header() {
     const [showLinks,setShowLinks] = useState(false)
     const show_links=()=>{

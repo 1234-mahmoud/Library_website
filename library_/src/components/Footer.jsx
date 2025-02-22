@@ -6,7 +6,7 @@ import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiTwotoneMail } from "react-icons/ai";
 import React from "react";
 import "../style/Footer.css";
-import logo from "../imgs/cropped-logo.webp";
+import logo from "../imgs/cropped_logo.webp";
 export default function Footer() {
   const sections = [
     "كل الكتب",
