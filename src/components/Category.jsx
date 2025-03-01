@@ -22,10 +22,10 @@ export default function Category() {
 
   const [dataSlider, setDataSlider] = useState(initialImgs);
   const [count, setCount] = useState(0);
-  const itemsPerPage = 6;
+  const visibleCount = 6;
 
   const shiftNext = () => {
-    if (count < dataSlider.length - itemsPerPage) {
+    if (count < dataSlider.length - visibleCount) {
       setCount(count + 1);
     } else {
       setDataSlider([...dataSlider, ...dataSlider]);
@@ -41,7 +41,7 @@ export default function Category() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prev) => {
-        if (prev < dataSlider.length - itemsPerPage) {
+        if (prev < dataSlider.length - visibleCount) {
           return prev + 1;
         } else {
           setDataSlider([...dataSlider, ...dataSlider]);
@@ -53,8 +53,15 @@ export default function Category() {
   }, [dataSlider]);
 
   const sliderStyle = css`
-    transform: translateX(calc(-${count} * (100% / ${itemsPerPage})));
+    transform: translateX(calc(-${count} * (100% / ${visibleCount})));
     transition: transform 1s ease-in-out;
+
+     @media (max-width: 767px) {
+        transform: translateX(-${count * 100}%);
+      }
+  
+      
+    }
   `;
 
   return (
@@ -78,13 +85,13 @@ export default function Category() {
         </div>
       </div>
       <div className="pagination">
-      {[...Array(initialImgs.length)].map((_, i) => (
-    <span
-      key={i}
-      className={i === count % initialImgs.length ? "active" : ""}
-      onClick={() => setCount(i)}
-    ></span>
-  ))}
+        {[...Array(initialImgs.length)].map((_, i) => (
+          <span
+            key={i}
+            className={i === count % initialImgs.length ? "active" : ""}
+            onClick={() => setCount(i)}
+          ></span>
+        ))}
       </div>
     </div>
   );

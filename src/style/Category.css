@@ -50,6 +50,12 @@ height: 150px;
 border-radius: 6px;
 }
 
+@media (max-width:767px) {
+  .slider_container .wraper .slider .card {
+    flex:0 0 calc(100% - 10px);
+  }
+}
+
 .slider_container .wraper .slider .card img{
   width:50px;
   max-width: 100%;
