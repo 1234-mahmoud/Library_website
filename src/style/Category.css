@@ -29,10 +29,10 @@ overflow: hidden;
 
 .slider_container .wraper .slider{
   width: 100%;
-/* border:3px solid red; */
 padding: 10px 0;
 display: flex;
 gap: 10px;
+margin: 0 5px 0 0;
 }
 
 
