@@ -1,56 +1,123 @@
+import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 import { useState, useEffect } from "react";
-import '../style/tst.css'
+import React from "react";
+import "../style/tst.css";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 
-import p1 from '../imgs/bilingual.webp';
-import p2 from '../imgs/book-2.webp';
-import p3 from '../imgs/book-3.webp';
-const images = [
- p1,p2,p3
-];
 
-export default function Carousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function Test({API_url}) {
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [currentIndex]);
+  const [visibleCount, setVisibleCount] = useState(6);
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [count, setCount] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(true);
+    const clonedData = [...data, ...data];
+    useEffect(() => {
+      const calculateVisibleCount = () => {
+        if (window.innerWidth <= 767) {
+          setVisibleCount(1);
+        } else if (window.innerWidth <= 991) {
+          setVisibleCount(3);
+        } else {
+          setVisibleCount(6);
+        }
+      };
+  
+      calculateVisibleCount();
+      window.addEventListener("resize", calculateVisibleCount);
+      return () => window.removeEventListener("resize", calculateVisibleCount);
+    }, []);
+  
+    useEffect(() => {
+      fetch(API_url)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((jsonData) => {
+          setData(jsonData.books || []);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setError(error.message);
+          setLoading(false);
+        });
+    }, [API_url]);
+  
+    const shiftNext = () => {
+      if (count + visibleCount >= data.length) {
+        // When count reaches the point where there is no more data to show, reset to 0
+        setTimeout(() => {
+          setIsTransitioning(false);
+          setCount(0);
+        }, 500); // Optional delay before reset to make it smooth
+      } else {
+        setIsTransitioning(true);
+        setCount((prevCount) => prevCount + 1);
+      }
+    
+    };
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        shiftNext();
+      }, 3000);
+      return () => clearInterval(interval);
+    }, [count, data]);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    const shiftPrev = () => {
+      if (count > 0) {
+        setCount(count - 1);
+      }
+    };
+  
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
+  const sliderStyle =css`
+      transform: translateX(calc(-${count * (100 / visibleCount)}%));
+      transition: ${isTransitioning ? "transform 0.5s ease-in-out" : "none"};
+  
+      @media (max-width: 767px) {
+        transform: translateX(-${count * 100}%);
+      }
+  
+      @media (min-width: 768px) and (max-width: 991px) {
+        transform: translateX(calc(-${count * (100 / visibleCount)}%));
+      }
+    `;
 
   return (
-    <div className="carousel">
-      <button className="prev" onClick={prevSlide}>&#10094;</button>
-      <div className="slides">
-        {images.map((img, index) => (
-          <img
-            key={index}
-            src={img}
-            className={index === currentIndex ? "active" : "hidden"}
-            alt={`Slide ${index + 1}`}
-          />
-        ))}
+  <div className="TEST">
+      <div className="slider_container">
+      <div className="btns_control">
+        <button onClick={shiftPrev}>
+          <AiFillCaretLeft />
+        </button>
+        <button onClick={shiftNext}>
+          <AiFillCaretRight />
+        </button>
       </div>
-      <button className="next" onClick={nextSlide}>&#10095;</button>
-      <div className="bullets">
-        {images.map((_, index) => (
-          <span
-            key={index}
-            className={index === currentIndex ? "bullet active-bullet" : "bullet"}
-            onClick={() => setCurrentIndex(index)}
-          ></span>
-        ))}
+      <div className="wraper">
+        <div className="slider" css={sliderStyle}>
+          {clonedData.map((b, idx) => (
+            <div className="card" key={idx}>
+               <img src={b.image} alt={b.title} />
+                <span>{b.title}</span>
+                <p>{b.subtitle}</p>
+                <span>{b.price}</span>
+                <a href={b.url}>Overview this book</a>
+            </div>
+          ))}
+        </div>
       </div>
+     
     </div>
+  </div>
   );
 }
