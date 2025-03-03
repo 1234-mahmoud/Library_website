@@ -27,7 +27,7 @@ export default function Category() {
   const visibleCount = 6;
 
   const shiftNext = () => {
-    if (count + visibleCount >= data.length) {
+    if (count + visibleCount >= initialImgs.length) {
       // When count reaches the point where there is no more data to show, reset to 0
       setTimeout(() => {
         setIsTransitioning(false);
