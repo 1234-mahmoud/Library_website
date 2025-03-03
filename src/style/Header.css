@@ -97,7 +97,8 @@ border-radius: 50%;
         height: 100vh;
         position: fixed;
         top:0;
-        left:0 !important
+        left:0 !important;
+        z-index: 20;
     }
     .hide{
         display: flex !important;
@@ -106,7 +107,9 @@ border-radius: 50%;
         height: 100vh;
         position: fixed;
         top:0;
-        left:-110% !important
+        left:-110% !important;
+        z-index: 20;
+
     }
 }
 
