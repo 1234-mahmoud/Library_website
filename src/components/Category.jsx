@@ -25,10 +25,13 @@ export default function Category() {
   const visibleCount = 6;
 
   const shiftNext = () => {
-    if (count < dataSlider.length - visibleCount) {
-      setCount(count + 1);
+    if (count + visibleCount >= data.length) {
+      // When count reaches the point where there is no more data to show, reset to 0
+      setTimeout(() => {
+        setCount(0);
+      }, 500); // Optional delay before reset to make it smooth
     } else {
-      setDataSlider([...dataSlider, ...dataSlider]);
+      setCount((prevCount) => prevCount + 1);
     }
   };
 
@@ -65,7 +68,8 @@ export default function Category() {
   `;
 
   return (
-    <div className="slider_container">
+  <div className="category">
+      <div className="slider_container">
       <div className="btns_control">
         <button onClick={shiftPrev}>
           <AiFillCaretLeft />
@@ -94,5 +98,6 @@ export default function Category() {
         ))}
       </div>
     </div>
+  </div>
   );
 }

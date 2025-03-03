@@ -3,7 +3,7 @@
 
 }
 .classification{
-  background-color: rgb(223, 125, 5) !important;
+  /* background-color: rgb(238, 238, 238) !important; */
 }
 
 .classification h1{
@@ -12,20 +12,34 @@
 }
 
 .classification .slider_container{
-width: 100%;
-background-color: rgb(66, 224, 203);
-color: white;
-padding: 20px 0 20px 20px;
-overflow: hidden;
+  width: 100%;
+  padding: 20px 0 20px 20px;
+  overflow: hidden;
+  position: relative;
+
 }
 
 .classification .slider_container .btns_control {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-padding: 20px 50px;
+padding:10px;
+/* outline:2px solid green; */
+position: absolute;
+top:50%;
+left: 5px;
+transform: translateY(-50%);
 }
 
+.classification .slider_container .btns_control button{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: gainsboro;
+
+}
 
 
 .classification .slider_container .wraper{
@@ -52,9 +66,10 @@ margin: 0 5px 0 0;
   flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color: rgb(86, 92, 99);
+/* background-color: rgba(233, 233, 233, 0.486); */
 height: 150px;
 border-radius: 6px;
+background-color: beige;
 }
 
 @media (max-width:767px) {
@@ -64,7 +79,7 @@ border-radius: 6px;
 }
 
 .classification .slider_container .wraper .slider .card img{
-  width:200px !important;
+  width:180px !important;
   height: 180px !important;
   /* max-width: 100%; */
 }

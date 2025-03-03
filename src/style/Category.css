@@ -2,32 +2,45 @@
   box-sizing: border-box;  /**vry important */
 
 }
-
-.slider_container{
-width: 100%;
-background-color: rgb(0, 134, 243);
-color: white;
-padding: 20px 0 20px 20px;
-overflow: hidden;
+.category{
 }
 
-.slider_container .btns_control {
+.category .slider_container{
+width: 100%;
+padding: 20px 0 20px 20px;
+overflow: hidden;
+position: relative;
+}
+
+.category .slider_container .btns_control {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-padding: 20px 50px;
+padding:10px;
+/* outline:2px solid green; */
+position: absolute;
+top:50%;
+left: 5px;
+transform: translateY(-50%);
 }
 
+ .category .slider_container .btns_control button{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background-color: gainsboro;
+}
 
-
-.slider_container .wraper{
+.category .slider_container .wraper{
 width: 95%;
 overflow: hidden;
 /* border: 3px solid red; */
 margin: auto;
 }
 
-.slider_container .wraper .slider{
+.category .slider_container .wraper .slider{
   width: 100%;
 padding: 10px 0;
 display: flex;
@@ -36,36 +49,40 @@ margin: 0 5px 0 0;
 }
 
 
-.slider_container .wraper .slider .card {
+.category .slider_container .wraper .slider .card {
   flex:0 0 calc(100% / 6 - 10px);
   display: flex;
   gap: 10px;
   flex-direction: column;
 justify-content: center;
 align-items: center;
-background-color: rgb(86, 92, 99);
+background-color: rgba(228, 228, 228, 0.486);
 height: 150px;
 border-radius: 6px;
 }
 
 @media (max-width:767px) {
-  .slider_container .wraper .slider .card {
+  
+.category .slider_container .wraper{
+  width: 80%`;
+}
+  .category .slider_container .wraper .slider .card {
     flex:0 0 calc(100% - 9.9px);
   }
 }
 
-.slider_container .wraper .slider .card img{
+.category .slider_container .wraper .slider .card img{
   width:50px;
   max-width: 100%;
 }
 
-.slider_container .pagination {
+.category .slider_container .pagination {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-.slider_container .pagination span {
+.category .slider_container .pagination span {
   width: 10px;
   height: 10px;
   margin: 0 5px;
@@ -76,7 +93,7 @@ border-radius: 6px;
   transition: background-color 0.3s ease-in-out;
 }
 
-.slider_container .pagination span.active {
+.category .slider_container .pagination span.active {
   background-color: #000000;
   transform: scale(1.2);
 }
