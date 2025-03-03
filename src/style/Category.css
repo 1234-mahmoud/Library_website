@@ -64,7 +64,7 @@ border-radius: 6px;
 @media (max-width:767px) {
   
 .category .slider_container .wraper{
-  width: 80%`;
+  width: 80%;
 }
   .category .slider_container .wraper .slider .card {
     flex:0 0 calc(100% - 9.9px);
