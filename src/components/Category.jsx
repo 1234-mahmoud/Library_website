@@ -22,15 +22,19 @@ export default function Category() {
 
   const [dataSlider, setDataSlider] = useState(initialImgs);
   const [count, setCount] = useState(0);
+       const [isTransitioning, setIsTransitioning] = useState(true);
+  
   const visibleCount = 6;
 
   const shiftNext = () => {
     if (count + visibleCount >= data.length) {
       // When count reaches the point where there is no more data to show, reset to 0
       setTimeout(() => {
+        setIsTransitioning(false);
         setCount(0);
       }, 500); // Optional delay before reset to make it smooth
     } else {
+      setIsTransitioning(true);
       setCount((prevCount) => prevCount + 1);
     }
   };
@@ -56,12 +60,16 @@ export default function Category() {
   }, [dataSlider]);
 
   const sliderStyle = css`
-    transform: translateX(calc(-${count} * (100% / ${visibleCount})));
-    transition: transform 1s ease-in-out;
-
-     @media (max-width: 767px) {
-        transform: translateX(-${count * 100}%);
-      }
+      transform: translateX(calc(-${count * (100 / visibleCount)}%));
+       transition: ${isTransitioning ? "transform 0.5s ease-in-out" : "none"};
+   
+       @media (max-width: 767px) {
+         transform: translateX(-${count * 100}%);
+       }
+   
+       @media (min-width: 768px) and (max-width: 991px) {
+         transform: translateX(calc(-${count * (100 / visibleCount)}%));
+       }
   
       
     }
