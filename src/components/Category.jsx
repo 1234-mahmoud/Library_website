@@ -22,8 +22,7 @@ export default function Category() {
 
   const [dataSlider, setDataSlider] = useState(initialImgs);
   const [count, setCount] = useState(0);
-       const [isTransitioning, setIsTransitioning] = useState(true);
-  
+  const [isTransitioning, setIsTransitioning] = useState(true);
   const visibleCount = 6;
 
   const shiftNext = () => {
@@ -76,36 +75,36 @@ export default function Category() {
   `;
 
   return (
-  <div className="category">
+    <div className="category">
       <div className="slider_container">
-      <div className="btns_control">
-        <button onClick={shiftPrev}>
-          <AiFillCaretLeft />
-        </button>
-        <button onClick={shiftNext}>
-          <AiFillCaretRight />
-        </button>
-      </div>
-      <div className="wraper">
-        <div className="slider" css={sliderStyle}>
-          {dataSlider.map((i, idx) => (
-            <div className="card" key={idx}>
-              <img src={i} alt="" />
-              <p>الفئة</p>
-            </div>
+        <div className="btns_control">
+          <button onClick={shiftPrev}>
+            <AiFillCaretLeft />
+          </button>
+          <button onClick={shiftNext}>
+            <AiFillCaretRight />
+          </button>
+        </div>
+        <div className="wraper">
+          <div className="slider" css={sliderStyle}>
+            {dataSlider.map((i, idx) => (
+              <div className="card" key={idx}>
+                <img src={i} alt="" />
+                <p>الفئة</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="pagination">
+          {[...Array(initialImgs.length)].map((_, i) => (
+            <span
+              key={i}
+              className={i === count % initialImgs.length ? "active" : ""}
+              onClick={() => setCount(i)}
+            ></span>
           ))}
         </div>
       </div>
-      <div className="pagination">
-        {[...Array(initialImgs.length)].map((_, i) => (
-          <span
-            key={i}
-            className={i === count % initialImgs.length ? "active" : ""}
-            onClick={() => setCount(i)}
-          ></span>
-        ))}
-      </div>
     </div>
-  </div>
   );
 }
