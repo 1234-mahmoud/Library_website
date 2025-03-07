@@ -46,3 +46,7 @@ a{
     width:1170px;
   }
 }
+
+.App {
+  position: relative;
+}
