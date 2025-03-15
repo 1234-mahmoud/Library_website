@@ -14,9 +14,7 @@ export default function Cart() {
     dispatch(
       cartActions.addItemToCart({
         id: product.id,
-        img:product.image,
         price: Number(product.price),
-        name: product.title,
       })
     );
   };
