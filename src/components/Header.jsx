@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { uiActions } from "../store/ui-slice";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsList } from "react-icons/bs";
@@ -27,7 +27,11 @@ export default function Header() {
       <div className="container">
         <div className="wedgit">
           <div className="wed_block cart">
-            <span>0</span>
+            <span>
+            {
+                useSelector(state=>state.cart.totalQuantity)
+              }
+            </span>
             <CiShoppingCart className="icon" onClick={handleToggleCart} />
             السلة
           </div>
@@ -40,7 +44,9 @@ export default function Header() {
             البحث
           </div>
           <div className="wed_block fav">
-            <span>0</span>
+            <span>
+            0
+            </span>
             <BiHeart className="icon" />
             المفضلة
           </div>

@@ -92,6 +92,38 @@ background-color: beige;
   white-space: nowrap;
 }
 
+.classification .slider_container .wraper .slider .card .cart_fav{
+display: flex;
+gap: 40px;
+justify-content: center;
+align-items: center;
+}
+.classification .slider_container .wraper .slider .card .cart_fav .addToCart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.classification .slider_container .wraper .slider .card .cart_fav .addToCart button{
+width: 25px;
+height: 25px;
+border-radius: 50%;
+border: none;
+background-color: rgb(24, 190, 212);
+color: white;
+font-weight: 700;
+font-size: 1.1rem;
+}
+
+.classification .slider_container .wraper .slider .card .cart_fav .favouriteProduct .fav_icon{
+  font-size: 1.4rem;
+border: none;
+}
+
+
+
+
+
+
 .classification .slider_container .pagination {
   display: flex;
   justify-content: center;
